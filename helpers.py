@@ -7,12 +7,15 @@
 import json
 import requests
 import re
+import os
 
 URL = "https://www.alphavantage.co/query"
 FUNCTION="TIME_SERIES_DAILY"
 INTERVAL="60min"
 API_KEY = "7FTMY9P2XGW5PLVF"
+INVENTORY_PATH = os.path.join(os.getcwd(), "stocks.json")
 
+requests.urllib3.disable_warnings(requests.urllib3.exceptions.InsecureRequestWarning)
 
 def get_stocks():
     """
@@ -20,7 +23,7 @@ def get_stocks():
     For now it will read codes from stocks.json
     """
     try:
-        with open("stocks.json") as f:
+        with open(INVENTORY_PATH) as f:
             data = json.load(f)
             data['count'] = len(data['stocks'])
             return data

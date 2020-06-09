@@ -1,16 +1,13 @@
 from flask import Flask, request, jsonify
-import re
 
 # custom modules
 from helpers import *
 
 app = Flask(__name__)
 
-
-
 @app.route("/")
 def index():
-    return "hello"
+    return jsonify("hello")
 
 @app.route("/stocks")
 def stocks():
@@ -25,13 +22,13 @@ def stocks():
 def stock(stock_code):
     try:
         args = request.args
-        print(args)
         if args:
             if not is_valid(args):
                 return jsonify({"error": "Please provide correct range."}), 400
-        data = get_stock(stock_code=stock_code, args=args)
+        data = get_stock(stock_code=stock_code.upper(), args=args)
         return jsonify({
-                    "data": data, 
+                    "stock_code": stock_code.upper(),
+                    "prices": data, 
                     "from": args['from'] if args else None,
                     "to": args['to'] if args else None})            
     except Exception as ex:
