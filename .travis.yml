@@ -5,7 +5,8 @@ python:
 services:
   - docker
 
-before_script: pip install pytest
+before_script: pip install pytest pyflakes
 
 script:
   - pytest tests
+  - pyflakes *.py

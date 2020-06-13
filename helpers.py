@@ -17,7 +17,7 @@ INVENTORY_PATH = os.path.join(os.getcwd(), "stocks.json")
 
 requests.urllib3.disable_warnings(requests.urllib3.exceptions.InsecureRequestWarning)
 
-def get_stocks():
+def get_stock_all():
     """
     Return all available stock codes.
     For now it will read codes from stocks.json
@@ -51,7 +51,7 @@ def filter_by_date(data, start, end):
             filtered_data[key] = value
     return filtered_data
 
-def get_stock(stock_code, args=None):
+def get_stock_one(stock_code, args=None):
     """
     Get price for give stock code. 
     If data is specified for a given data.

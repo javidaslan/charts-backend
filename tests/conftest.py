@@ -1,5 +1,4 @@
 import pytest
-import sys, os
 
 @pytest.fixture
 def client():

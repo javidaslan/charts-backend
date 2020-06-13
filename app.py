@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 
 # custom modules
-from helpers import *
+from helpers import get_stock_all, get_stock_one, is_valid
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ def index():
 @app.route("/stocks")
 def stocks():
     try:
-        stocks = get_stocks()
+        stocks = get_stock_all()
         return jsonify(stocks)    
     except Exception as ex:
         print(ex)
@@ -25,7 +25,7 @@ def stock(stock_code):
         if args:
             if not is_valid(args):
                 return jsonify({"error": "Please provide correct range."}), 400
-        data = get_stock(stock_code=stock_code.upper(), args=args)
+        data = get_stock_one(stock_code=stock_code.upper(), args=args)
         return jsonify({
                     "stock_code": stock_code.upper(),
                     "prices": data, 
