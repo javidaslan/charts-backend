@@ -5,8 +5,8 @@ python:
 services:
   - docker
 
-before_script: pip install pytest pyflakes
+before_script: pip install pytest flake8
 
 script:
   - pytest tests
-  - pyflakes *.py
+  - flake8 --exclude tests/

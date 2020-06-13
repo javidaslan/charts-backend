@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 
 # custom modules
 from helpers import get_stock_all, get_stock_one, is_valid
-import sys
 
 app = Flask(__name__)
 
