@@ -1,0 +1,45 @@
+{
+    "stocks": [
+        {
+            "stockCode": "AAPL",
+            "description": "Apple Inc."
+        },
+        {
+            "stockCode": "XOM",
+            "description": "Exxon Mobil Corporation"
+        },
+        {
+            "stockCode": "MS",
+            "description": "Morgan Stanley"
+        },
+        {
+            "stockCode": "NFLX",
+            "description": "Netflix Inc."
+        },
+        {
+            "stockCode": "NKE",
+            "description": "Nike Inc."
+        },
+        {
+            "stockCode": "WTI",
+            "description": "W&T Offshore Inc."
+        },
+        {
+            "stockCode": "SBUX",
+            "description": "Starbucks Corporation"
+        },
+        {
+            "stockCode": "MCD",
+            "description": "McDonald's Corporation"
+        },
+        {
+            "stockCode": "CVX",
+            "description": "Chevron Corporation"
+        },
+        {
+            "stockCode": "DAI.DE",
+            "description": "Daimler AG"
+        }
+        
+    ]
+}
