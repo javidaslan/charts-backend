@@ -27,10 +27,10 @@ def stock(stock_code):
                 return jsonify({"error": "Please provide correct range."}), 400
         data = get_stock_one(stock_code=stock_code.upper(), args=args)
         return jsonify({
-                    "stock_code": stock_code.upper(),
-                    "prices": data, 
-                    "from": args['from'] if args else None,
-                    "to": args['to'] if args else None})            
+            "stock_code": stock_code.upper(),
+            "prices": data, 
+            "from": args['from'] if args else None,
+            "to": args['to'] if args else None})            
     except Exception as ex:
         print(ex)
         return jsonify("Stock information could not be retrieved."), 500
