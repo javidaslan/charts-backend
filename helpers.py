@@ -58,7 +58,6 @@ def get_stock(stock_code, args=None):
     """
     data = None
     try:
-        print(f"requesting daily information for {stock_code}")
         response = requests.get(url=f"{URL}?function={FUNCTION}&symbol={stock_code}&&apikey={API_KEY}", verify=False)
         if response.status_code == 200:
             data = response.json()["Time Series (Daily)"]
