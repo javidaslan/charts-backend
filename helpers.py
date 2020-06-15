@@ -44,14 +44,15 @@ def is_valid(args):
     return None
 
 
-def filter_by_date(data, month):
+def filter_by_date(data, month, year):
     """
     Return data between start and end dates
     """
     filtered_data = {}
     for key,value in data.items():
         item_month = key.split('-')[1]
-        if month == item_month:
+        item_year = year
+        if month == item_month and year == item_year:
             filtered_data[key] = value
     return filtered_data
 
@@ -74,13 +75,15 @@ def get_monthly_price(stock_code, args=None):
     """
     data = None
     month = refine_month(args['month'] if args else datetime.now().strftime('%B'))
+    year = args['year'] if args else str(datetime.now().year)
     try:
         response = requests.get(url=f"{URL}?function={FUNCTION}&symbol={stock_code}&&apikey={API_KEY}", verify=False)
         if response.status_code == 200:
             data = response.json()["Time Series (Daily)"]
-            data = filter_by_date(data=data, month=month)
+            data = filter_by_date(data=data, month=month, year=year)
         else:
             print(response.text)
+            print("response")
     except Exception:
         print(traceback.format_exc())
     finally:
