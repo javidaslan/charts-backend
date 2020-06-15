@@ -32,7 +32,7 @@ def stock(stock_code):
             "prices": data, 
             "year": args['year'] if args else None,
             "month": args['month'] if args else None})            
-    except Exception as ex:
+    except Exception:
         print(traceback.format_exc())
         return jsonify("Stock information could not be retrieved."), 500
 
