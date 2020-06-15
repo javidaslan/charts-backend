@@ -20,5 +20,5 @@ def test_stocks(client):
 @pytest.mark.filterwarnings('ignore::urllib3.exceptions.InsecureRequestWarning')
 def test_stock(client):
     result = call(client, '/stock/AAPL')
-    keys = ['stock_code', 'prices', 'from', 'to']
+    keys = ['stock_code', 'prices', 'year', 'month']
     assert all([key in result for key in keys])
