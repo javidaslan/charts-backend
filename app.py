@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # custom modules
-from helpers import get_stock_all, get_stock_one, is_valid
+from helpers import get_stock_codes, get_monthly_price
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/")
 def index():
@@ -12,7 +14,7 @@ def index():
 @app.route("/stocks")
 def stocks():
     try:
-        stocks = get_stock_all()
+        stocks = get_stock_codes()
         return jsonify(stocks)    
     except Exception as ex:
         print(ex)
@@ -22,10 +24,9 @@ def stocks():
 def stock(stock_code):
     try:
         args = request.args
-        if args:
-            if not is_valid(args):
-                return jsonify({"error": "Please provide correct range."}), 400
-        data = get_stock_one(stock_code=stock_code.upper(), args=args)
+        if args and 'month' not in args:
+            return jsonify({"error": "Please provide correct filter."}), 400
+        data = get_monthly_price(stock_code=stock_code.upper(), args=args)
         return jsonify({
             "stock_code": stock_code.upper(),
             "prices": data, 

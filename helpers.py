@@ -8,6 +8,9 @@ import json
 import requests
 import re
 import os
+from datetime import datetime
+from time import strptime
+import traceback
 
 URL = "https://www.alphavantage.co/query"
 FUNCTION="TIME_SERIES_DAILY"
@@ -17,7 +20,7 @@ INVENTORY_PATH = os.path.join(os.getcwd(), "stocks.json")
 
 requests.urllib3.disable_warnings(requests.urllib3.exceptions.InsecureRequestWarning)
 
-def get_stock_all():
+def get_stock_codes():
     """
     Return all available stock codes.
     For now it will read codes from stocks.json
@@ -41,31 +44,44 @@ def is_valid(args):
     return None
 
 
-def filter_by_date(data, start, end):
+def filter_by_date(data, month):
     """
     Return data between start and end dates
     """
     filtered_data = {}
     for key,value in data.items():
-        if start <= key <= end:
+        item_month = key.split('-')[1]
+        if month == item_month:
             filtered_data[key] = value
     return filtered_data
 
-def get_stock_one(stock_code, args=None):
+def refine_month(month_name):
     """
-    Get price for give stock code. 
+    This function refines month name
+    """
+    try:
+        month_number = strptime(month_name[:3],'%b').tm_mon
+        return '{:02d}'.format(month_number)
+    except Exception:
+        print(traceback.format_exc())
+    return None
+
+
+def get_monthly_price(stock_code, args=None):
+    """
+    Get price for given stock code. 
     If data is specified for a given data.
     """
     data = None
+    month = refine_month(args['month'] if args else datetime.now().strftime('%B'))
     try:
         response = requests.get(url=f"{URL}?function={FUNCTION}&symbol={stock_code}&&apikey={API_KEY}", verify=False)
         if response.status_code == 200:
             data = response.json()["Time Series (Daily)"]
-            if args:
-                data = filter_by_date(data=data, start=args['from'], end=args['to'])
+            data = filter_by_date(data=data, month=month)
         else:
             print(response.text)
-    except Exception as ex:
-        print(ex)
+    except Exception:
+        print(traceback.format_exc())
     finally:
         return data
