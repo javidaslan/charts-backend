@@ -24,6 +24,7 @@ def get_stock_codes():
     """
     Return all available stock codes.
     For now it will read codes from stocks.json
+    CI Test
     """
     try:
         with open(INVENTORY_PATH) as f:
