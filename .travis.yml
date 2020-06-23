@@ -15,6 +15,7 @@ script:
   - flake8 --exclude tests/ --ignore=E302,W291,E305,W292,E225,E501,E231
 
 after_success:
-  - docker build -t javidaslan/charts-backend:$SHA .
+  - docker build -t javidaslan/charts-backend:$SHA javidaslan/charts-backend:latest .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push javidaslan/charts-backend:$SHA
+  - docker push javidaslan/charts-backend:latest
