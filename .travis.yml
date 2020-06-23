@@ -10,3 +10,8 @@ before_script: pip install pytest flake8
 script:
   - pytest tests
   - flake8 --exclude tests/ --ignore=E302,W291,E305,W292,E225,E501,E231
+
+after_success:
+  - docker build -t javidaslan/charts-backend .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push javidaslan/charts-backend

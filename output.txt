@@ -1,0 +1,28 @@
+./app.py:10:1: E302 expected 2 blank lines, found 1
+./app.py:14:1: E302 expected 2 blank lines, found 1
+./app.py:18:31: W291 trailing whitespace
+./app.py:23:1: E302 expected 2 blank lines, found 1
+./app.py:32:28: W291 trailing whitespace
+./app.py:34:55: W291 trailing whitespace
+./app.py:39:1: E305 expected 2 blank lines after class or function definition, found 1
+./app.py:40:51: W292 no newline at end of file
+./helpers.py:16:9: E225 missing whitespace around operator
+./helpers.py:17:9: E225 missing whitespace around operator
+./helpers.py:21:80: E501 line too long (85 > 79 characters)
+./helpers.py:23:1: E302 expected 2 blank lines, found 1
+./helpers.py:38:1: E302 expected 2 blank lines, found 1
+./helpers.py:42:80: E501 line too long (97 > 79 characters)
+./helpers.py:44:80: E501 line too long (96 > 79 characters)
+./helpers.py:53:12: E231 missing whitespace after ','
+./helpers.py:60:1: E302 expected 2 blank lines, found 1
+./helpers.py:65:47: E231 missing whitespace after ','
+./helpers.py:74:36: W291 trailing whitespace
+./helpers.py:78:80: E501 line too long (82 > 79 characters)
+./helpers.py:81:80: E501 line too long (117 > 79 characters)
+./tests/conftest.py:3:1: E302 expected 2 blank lines, found 1
+./tests/conftest.py:7:29: W292 no newline at end of file
+./tests/test_api.py:11:1: E302 expected 2 blank lines, found 1
+./tests/test_api.py:15:1: E302 expected 2 blank lines, found 1
+./tests/test_api.py:20:1: E302 expected 2 blank lines, found 1
+./tests/test_api.py:20:80: E501 line too long (80 > 79 characters)
+./tests/test_api.py:24:48: W292 no newline at end of file
